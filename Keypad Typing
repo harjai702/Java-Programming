@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class MyClass {
+    public static void main(String args[]) {
+        int num,count=0,b=0;
+        Scanner scan=new Scanner(System.in);
+        String str=new String("cfilorvy");
+        String str2=new String("behkmqux");
+        String str3=new String("adgjmptw");
+        String str4=new String("sz");
+        num=scan.nextInt();
+        while(num!=0)
+        {
+            b=num%10;
+            num=num/10;
+            count++;
+        }
+         if(count==3)
+        {
+            char c2 = str.charAt(b-1);
+            System.out.print(c2);
+        }
+        else if(count==2)
+        {
+            char c2 = str2.charAt(b-1);
+            System.out.print(c2);
+        }
+        else if(count==1)
+        {
+            char c2 = str3.charAt(b-1);
+            System.out.print(c2);
+        }
+        else if(count==4)
+        {
+            if(b==7)
+            {
+                System.out.print("s");
+            }
+            else if(b==9)
+            {
+                System.out.print("z");
+            }
+        }
+    }
+}
