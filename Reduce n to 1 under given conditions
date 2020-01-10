@@ -1,0 +1,36 @@
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+      int n=10,z=0,k=0;
+      int ist,cnd;
+      int[] arr=new int[100];
+      if(n==1){
+              System.out.print("1");
+          }
+          else{
+      while(n>1){
+          cnd=1234554;
+          ist=1235323;
+              if(n%3==0){
+                  ist=n/3;
+                  cnd=1234554;
+              }
+              else if(n%2==0){
+                  cnd=n/2;
+                  ist=1235323;
+              }
+              z=z+Math.min(ist,cnd);
+              arr[k]=z;
+              k++;
+              z=z+1-Math.min(ist,cnd);
+              n=n-1;
+          }
+          int[] arr2=new int[k];
+          for(int i=0;i<k;i++){
+              arr2[i]=arr[i];
+          }
+          Arrays.sort(arr2);
+              System.out.print(arr2[0]);
+          }
+    }
+}
