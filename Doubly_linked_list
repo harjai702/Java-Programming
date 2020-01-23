@@ -1,0 +1,110 @@
+import java.util.*;
+public class LinkedList{
+    Node head,tail;
+    static class Node{
+        int data;
+        Node next;
+        Node prev;
+        Node(int q){
+            data=q;
+        }
+    }
+    public static void insert(LinkedList list,int q,int pos){
+        Node n=new Node(q);
+        int count=1;
+        if(list.head==null){
+            n.prev=null;
+            list.head=n;
+            n.next=null;
+            list.tail=n;
+        }
+        else if(list.head!=null&&pos==1){
+            n.prev=null;
+            Node temp=list.head;
+            list.head.prev=n;
+            list.head=n;
+            n.next=temp;
+        }
+        else{
+            Node last=list.head;
+            while(count!=pos-1){
+                last=last.next;
+                count++;
+            }
+            if(last.next==null){
+            last.next=n;
+            n.prev=list.tail;
+            n.next=null;
+            list.tail=n;
+            }
+            else if(pos==2&&last.next!=null){
+                n.prev=list.head;
+                n.next=last.next;
+                last.next.prev=n;
+                last.next=n;
+            }
+            else{
+                n.prev=last.prev.next;
+                n.next=last.next;
+                 last.next.prev=n;
+                last.next=n;
+            }
+        }
+    }
+    public static void delete_at_last(LinkedList list){
+        Node last=list.head; 
+        if(last.next==null){
+            list.head=null;
+        }
+        else{
+             while(last.next.next!=null){
+                 last=last.next;
+             }
+             last.next=null;
+        }
+    }
+    public static void delete_at_first(LinkedList list){
+       Node last=list.head; 
+        if(last.next==null){
+            list.head=null;
+        }
+        else{
+            Node last2=list.tail;
+            while(last2.prev.prev!=null){
+                last2=last2.prev;
+            }
+            last2.prev=null;
+            list.head=last.next;
+        }
+    }
+    public static void print(LinkedList list){
+        Node last=list.head;
+        while(last!=null){
+            System.out.print(last.data+" ");
+            last=last.next;
+        }
+    }
+    public static void printrev(LinkedList list){
+        Node last=list.head;
+        while(last.next!=null){
+            last=last.next;
+        }
+        while(last!=null){
+            System.out.print(last.data+" ");
+            last=last.prev;
+        }
+    }
+    public static void main(String Args[]){
+        LinkedList list=new LinkedList();
+        insert(list,10,1);
+        insert(list,20,1);
+        insert(list,30,1);
+        insert(list,40,1);
+        insert(list,50,2);
+        delete_at_last(list);
+        delete_at_first(list);
+        print(list);
+        System.out.println("");
+        printrev(list);
+    }
+}
