@@ -1,0 +1,79 @@
+import java.util.*;
+public class stack{
+    int top=0;
+    Node head;
+    static class Node{
+        int data;
+        Node next;
+        Node(int q){
+            data=q;
+        }
+    }
+    public static void push(stack list,int q,int s){
+        list.top++;
+        if(list.top==s+1){
+            System.out.println("overflow");
+        }
+        else{
+            Node n=new Node(q);
+        if(list.head==null){
+            list.head=n;
+            n.next=null;
+        }
+        else{
+            Node last=list.head;
+            while(last.next!=null){
+                last=last.next;
+            }
+            last.next=n;
+            n.next=null;
+        }
+        }
+    }
+    public static int pop(stack list,int s){
+        list.top--;
+        if(list.top==-1){
+            return -1;
+        }
+        else{
+            Node last=list.head;
+            if(last.next==null){
+                list.head=null;
+                return last.data;
+            }
+            else{
+                while(last.next.next!=null){
+                    last=last.next;
+                }
+                int num=last.next.data;
+                last.next=null;
+                return num;
+            }
+        }
+    }
+    public static void print(stack list){
+        Node last=list.head;
+        while(last!=null){
+            System.out.print(last.data+" ");
+            last=last.next;
+        }
+    }
+    public static void main(String args[]){
+        stack stk=new stack();
+        int size=5;
+        push(stk,10,size);
+        push(stk,20,size);
+        push(stk,30,size);
+        push(stk,40,size);
+        push(stk,50,size);
+        push(stk,60,size);
+        int n=pop(stk,size);
+        if(n==-1){
+            System.out.println("underflow");
+        }
+        else{
+            System.out.println(n);
+        }
+         print(stk);
+    }
+}
