@@ -1,0 +1,62 @@
+import java.util.*;
+public class LinkedList{
+Node head;
+static class Node{
+    int data;
+    Node next;
+    Node(int d){
+        data=d;
+    }
+  }
+  public static void insert(LinkedList list,int q){
+  if(list.head==null){
+	Node n=new Node(q);
+    list.head=n;
+	n.next=null;
+	}
+   else{
+        Node last=list.head;
+	while(last.next!=null){
+	last=last.next;
+	}
+      Node n=new Node(q);
+      last.next=n;
+    }
+  }
+ public static void made_cycle(LinkedList list){
+     Node last=list.head;
+     Node temp=last.next.next;
+     while(last.next!=null){
+         last=last.next;
+     }
+     last.next=temp;
+ }
+ public static void detect_loop(LinkedList list){
+     Node temp = list.head, temp2 = list.head,q=null; 
+        while (temp != null && temp2 != null && temp2.next != null) { 
+            q=temp;
+            temp = temp.next; 
+            temp2 = temp2.next.next; 
+            if (temp == temp2) { 
+                System.out.println("Found loop"); 
+               break;
+            }
+        } 
+        System.out.print(q.data+"->");
+         while(temp.next!=temp2){
+                System.out.print(temp.data+"->");
+                temp=temp.next;
+            }
+            System.out.print(q.data);
+ }
+    public static void main(String Args[]){
+	 LinkedList l=new LinkedList();
+	 insert(l,10);
+	 insert(l,20);
+	 insert(l,30);
+	 insert(l,40);
+	 insert(l,50);
+	 made_cycle(l);
+	 detect_loop(l);
+    }
+}
