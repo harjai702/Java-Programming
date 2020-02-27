@@ -1,0 +1,55 @@
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+      Scanner scan=new Scanner(System.in);
+      int wt=scan.nextInt();
+      int n=scan.nextInt();
+      float[] v=new float[n];
+      float[] w=new float[n];
+      float[] e=new float[n];
+      for(int i=0;i<n;i++){
+          v[i]=scan.nextFloat();
+      }
+      for(int i=0;i<n;i++){
+          w[i]=scan.nextFloat();
+      }
+      for(int i=0;i<n;i++){
+          e[i]=v[i]/w[i];
+      }
+      for(int i=0;i<n;i++){
+          for(int j=i+1;j<n;j++){
+              if(e[j]>e[i]){
+                  float temp=0;
+                  float temp2=e[i];
+                  e[i]=e[j];
+                  e[j]=temp2;
+                  temp=v[i];
+                  v[i]=v[j];
+                  v[j]=temp;
+                  temp=w[i];
+                  w[i]=w[j];
+                  w[j]=temp;
+              }
+          }
+      }
+      int bre=0;
+      float pro=0;
+      float sum=0,sum2=0;
+      for(int i=0;i<n;i++){
+          for(int j=0;j<w[i];j++){
+               sum++;
+              sum2++;
+              if(sum2==wt){
+                  bre=1;
+                  break;
+              }
+          }
+          pro=pro+sum*e[i];
+          sum=0;
+          if(bre==1){
+              break;
+          }
+      }
+      System.out.print(pro);
+    }
+}
